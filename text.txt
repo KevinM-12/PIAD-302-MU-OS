@@ -1,0 +1,55 @@
+USE Northwind
+
+SELECT * FROM Customers;
+
+
+SELECT CustomerID FROM Customers
+WHERE CustomerID IN ('ALFKI', 'ANATR', 'ANTON', 'AROUT', 'BERGS');
+
+
+--Uso de subconsulta
+
+SELECT * FROM Customers
+WHERE CustomerID IN (
+	SELECT CustomerID FROM Customers
+	WHERE CustomerID IN ('ALFKI', 'ANATR', 'ANTON', 'AROUT', 'BERGS')
+)
+
+SELECT CategoryID, COUNT(*) FROM Products
+WHERE CategoryID IN(
+	SELECT TOP (5) CategoryID FROM Categories
+	ORDER BY CategoryID DESC
+)
+GROUP BY CategoryID
+
+SELECT 'PIAD-302' FROM Categories
+UNION
+SELECT 'PIAD-303' FROM Categories
+
+SELECT 'PIAD-302', 'PIAD-305' FROM Categories
+UNION ALL
+SELECT 'PIAD-303', 'PIAD-304' FROM Categories
+
+--Unir todas las filas, id y nombre de las tablas productos y categorias.
+
+SELECT ProductID, ProductName FROM Products
+UNION ALL
+SELECT CategoryID, CategoryName FROM Categories
+
+--Consulta - Uso de INNER JOIN
+SELECT * FROM Products p
+INNER JOIN Categories c ON p.CategoryID = c.CategoryID
+
+-- Mostrar el ProductID, ProductName, UnitPrice, CategoryName
+SELECT ProductID, ProductName, UnitPrice, CategoryName FROM Products p
+INNER JOIN Categories c ON p.CategoryID = c.CategoryId
+
+-- ORDERS Y CUSTOMERS
+SELECT * FROM Orders o
+INNER JOIN Customers c ON o.CustomerID = c.CustomerID
+
+-- ORDERS Y ORDERS DETAILS
+SELECT * FROM Orders o
+INNER JOIN [Order Details] d ON o.OrderID = d.OrderID
+
+SELECT * FROM ORDERS;

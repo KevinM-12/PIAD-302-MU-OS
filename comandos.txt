@@ -12,3 +12,6 @@ git push -u origin main
 git remote add origin https://github.com/KevinM-12/PIAD-302-MU-OS.git
 git branch -M main
 git push -u origin main
+
+-git config --global user.email "1640854@senati.pe"
+-git config --global user.name "Kevin Muños"
