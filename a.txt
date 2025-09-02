@@ -1,0 +1,82 @@
+CREATE TABLE Users (
+	id int,
+	nombre varchar(100)
+);
+
+INSERT INTO Users VALUES (1, 'Jose');
+INSERT INTO Users VALUES (2, 'Luis');
+
+SELECT * FROM Users;
+
+-- PROCEDIMIENTO ALMACENADOS
+
+CREATE PROCEDURE ObtenerTodosLosUsuarios
+AS
+	SELECT * FROM Users;
+
+EXEC ObtenerTodosLosUsuarios;
+
+-- CREAR UN STORE PROCEDURE PARA SUMAR
+CREATE PROC SumarNumeros
+(
+	@numero1 int,
+	@numero2 int
+)
+AS
+	print '' + @numero1 + @numero2 + '';
+
+EXEC SumarNumeros 100, 200;
+
+-- CREAR 4 PROCEDIMIENTOS ALMACENADOS: RESTAR, MULTIPLICAR, DIVIDIR, POTENCIAR.
+
+-- RESTA
+DROP PROC RestarNumeros
+CREATE PROC RestarNumeros
+(
+	@numero1 int,
+	@numero2 int
+)
+AS
+	print '' + @numero1 - @numero2 + '';
+
+EXEC RestarNumeros 20, 14;
+
+-- MULTIPLICACION
+CREATE PROC MultiplicarNumeros
+(
+	@numero1 int,
+	@numero2 int
+)
+AS
+	print '' + @numero1 * @numero2 + '';
+
+EXEC MultiplicarNumeros 8, 16;
+
+-- DIVISION
+CREATE PROC DividirNumeros
+(
+	@numero1 int,
+	@numero2 int
+)
+AS
+	print '' + @numero1 / @numero2 + '';
+
+EXEC DividirNumeros 99, 9;
+
+--POTENCIACION
+CREATE PROC PotenciarNumeros
+(
+	@numero1 int,
+	@numero2 int
+)
+AS
+	print '' + power(@numero1, @numero2) + '';
+
+EXEC PotenciarNumeros 4, 5;
+
+Drop PROC PotenciarNumeros
+
+EXEC RestarNumeros 20, 14;
+EXEC MultiplicarNumeros 8, 16;
+EXEC DividirNumeros 99, 9;
+EXEC PotenciarNumeros 4, 5;
