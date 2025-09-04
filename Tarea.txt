@@ -1,0 +1,27 @@
+CREATE TABLE Tareas (
+	Id INT IDENTITY(1,1),
+	Descripcion VARCHAR(100),
+	Estado VARCHAR(20) DEFAULT 'pendiente',
+);
+
+CREATE PROCEDURE AgregarTarea
+	@Descripcion VARCHAR(100)
+AS
+	INSERT INTO Tareas (Descripcion) VALUES (@Descripcion);
+
+CREATE PROCEDURE VerTareas
+AS
+	SELECT * FROM Tareas;
+
+CREATE PROCEDURE CompletarTarea
+	@Id INT
+AS
+	UPDATE Tareas SET Estado = 'completada' WHERE Id = @Id;
+
+EXEC AgregarTarea 'Hacer la tarea';
+EXEC AgregarTarea 'Lavar los platos';
+EXEC AgregarTarea 'llamar a un amigo';
+
+EXEC CompletarTarea 1;
+
+EXEC VerTareas;
