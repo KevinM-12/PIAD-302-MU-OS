@@ -1,0 +1,72 @@
+SELECT * FROM Users;
+
+DELETE FROM Users WHERE id = 2;
+
+-- DROP TABLE UserLogs;
+DROP TRIGGER dbo.trigger_delete_or_update;
+
+CREATE TABLE UserLogs(
+	userLogId int primary key identity(1,1),
+	[action] varchar(100),
+	[user] varchar(100),
+	[date] datetime
+);
+
+--SELECT * FROM UserLogs;
+
+CREATE TRIGGER trigger_delete_users ON Users
+AFTER
+	DELETE
+AS
+	INSERT INTO UserLogs([action], [user], [date]) 
+					VALUES('DELETE', SUSER_NAME(), SYSDATETIME())
+
+
+--CREAR UN TRIGGER PARA LA TABLA USERS CUANDO SE ACTUALICE UN REGISTRO
+
+
+SELECT * FROM UserLogs;
+
+CREATE TRIGGER trigger_update_users ON Users
+AFTER
+	UPDATE
+AS
+	INSERT INTO UserLogs([action], [user], [date]) 
+					VALUES('UPDATE', SUSER_NAME(), SYSDATETIME())
+
+UPDATE Users SET nombre = 'Linguini' WHERE id = 2;
+SELECT * FROM Users;
+
+
+declare @numero1 int = 20
+declare @numero2 int = 50
+
+declare @suma int = @numero1 + @numero2
+
+print 'La suma es: '
+print @suma
+
+--DOS TRIGGERS (DELETE, UPDATE)
+
+CREATE TRIGGER trigger_delete_update ON Users
+AFTER
+	UPDATE, DELETE
+AS
+	IF EXISTS (SELECT * FROM inserted)
+		INSERT INTO UserLogs([action], [user], [date]) 
+		SELECT 'UPDATED', SUSER_NAME(), SYSDATETIME()
+		FROM  inserted;
+
+	IF EXISTS (SELECT * FROM deleted) AND NOT EXISTS (SELECT * FROM inserted)
+		INSERT INTO UserLogs([action], [user], [date])
+		SELECT 'DELETED', SUSER_NAME(), SYSDATETIME()
+		FROM deleted;
+
+INSERT INTO Users(id, nombre)
+VALUES (3, 'MARIA')
+UPDATE Users SET nombre = 'marios' WHERE id = 2;
+DELETE FROM Users WHERE id = 3;
+SELECT * FROM UserLogs;
+SELECT * FROM Users;
+
+DELETE FROM UserLogs
