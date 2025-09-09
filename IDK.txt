@@ -1,0 +1,130 @@
+public static void main(String[] args) {
+        // TODO code application logic here
+        System.out.println("Hola Mundo!");
+        
+        //Operadores Aritméticos: Suma = +, Resta = -, Multiplicación = *
+        //Division = /
+        
+        // <Tipo de dato> <nombre de variable>;
+        int numero1; //Proceso de declaracion
+        numero1 = 20; //Asignación de valor
+        
+        int numero2 = 30;
+        int suma = numero1 + numero2;
+        
+        //System.out.println("La suma es: "+ (numero1 + numero2));
+        //System.out.println(numero1 + numero2 + "La suma es: ");
+        System.out.println("La suma es: " + suma);
+        // Resta, multiplicación, división, potenciación, raiz cuadrada.
+        int number1 = 16;
+        int number2 = 4;
+        //Resta:
+        int resta = number1 - number2;
+        System.out.println("La resta es: " + resta);
+        
+        //Multiplicación:
+        int mult = number1 * number2;
+        System.out.println("La multiplicacion es: " + mult);
+        
+        //División:
+        int div = number1 / number2;
+        System.out.println("La division es: " + div);
+        
+        //Potenciación:
+        double pot = Math.pow(number1, 2);
+        System.out.println("La potencia es: " + pot);
+        
+        //Raiz cuadrada:
+        double raiz = Math.sqrt(number1);
+        System.out.println("La raiz cuadrada es: " + raiz);
+
+	// Realiza tu primer hola mundo
+        System.out.println("Hola Mundo!");
+       //Declarar 2 notas y vas a imprimir el promedio de ambos
+        double nota1 = 18;
+        double nota2= 16.4;
+        double prom = (nota1 + nota2)/2;
+         System.out.println("El promedio es: " + prom);
+	
+	Scanner entrada = new Scanner(System.in);
+         
+         System.out.println("Ingrese un nombre: ");
+         String nombre = entrada.nextLine();
+         
+         System.out.println("Ingrese un apellido: ");
+         String apellido = entrada.nextLine();
+
+         System.out.println("El alumno ingresado es: " + nombre + " " + apellido);
+
+	System.out.println("Hello World!");
+        String nombre;
+        
+        nombre = JOptionPane.showInputDialog(null, "Ingrese un nombre: ");
+        
+        System.out.println("Bienvenido: " + nombre);
+        
+        //declarar 2 numeros y mostrar la suma.
+        
+        String numero1 = JOptionPane.showInputDialog(null,"Ingrese el primer numero: ");
+        String numero2 = JOptionPane.showInputDialog(null,"Ingrese el segundo numero: ");
+        
+        int num1 = Integer.parseInt(numero1);
+        int num2 = Integer.parseInt(numero2);
+        
+        int suma = num1 + num2;
+        
+        System.out.println("la suma de ambos numeros es: " + suma);
+
+	// i++ | i = i + 1 | i += 1
+        /*for(int i = 1; i < 11; i += 1 ) {
+            System.out.println(i);
+        }*/
+        
+        // Imprimir los números pares del 1 al 100.
+        
+        /*for(int i = 2; i<100; i += 2) {
+            System.out.println(i);
+        }*/
+        
+        //Imprimir los numeros multiplos de 5 del 1 al 100.
+        
+        /*for(int i = 5; i<100; i+=5) {
+            System.out.println(i);
+        }*/
+        
+        //Ingresar un valor por Scanner y mostrar los números menores al número ingresado.
+        //Ejemplo: 5 => 1,2,3,4,5
+        
+        Scanner entrada = new Scanner(System.in);
+        
+        /*System.out.println("Ingrese el numero: ");
+        int num = entrada.nextInt();
+        System.out.println("Los numeros son: ");
+       
+        for (int i = 1; i<=num; i++){
+            System.out.println(i);
+        }*/
+        
+        //Ingresar el número inicial y final de la tabla.
+        //Ejemplo: 1,5 => 1x1.....1x12, 5x12...
+        
+        System.out.println("Ingrese el primer numero: ");        
+        int num1 = entrada.nextInt();
+        
+        System.out.println("Ingrese el segundo numero: ");
+        int num2 = entrada.nextInt();
+        
+        System.out.println("La tabla del " + num1 + " es: ");
+        for (int i = 1; i <= 12; i++) {
+            int R1 = num1 * i;
+            System.out.println(num1 + " x " + i + " = " + R1);
+        }
+        System.out.println("---------------------------------------");
+        System.out.println("La tabla del " + num2 + " es: ");
+        for (int i = 12; i >= 1; i--) {
+            int R2 = num2 * i;
+            System.out.println(num2 + " x " + i + " = " + R2);
+        }
+	
+    }
+
