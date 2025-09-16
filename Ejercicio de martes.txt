@@ -1,0 +1,61 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
+ */
+package cudsenati;
+
+import java.util.*;
+import java.sql.*;
+
+/**
+ *
+ * @author Alumno-ETI
+ */
+public class CUDSENATI {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        // TODO code application logic here
+        
+        String jdbc_url = "jdbc:sqlserver://localhost:1433;encrypt=false;databaseName=Northwind";
+        
+        Connection cn = null;
+        
+        try {
+           cn = DriverManager.getConnection(jdbc_url, "sa", "1234");
+           
+            
+           if (cn != null) {
+               System.out.println("Conexion Exitosa");
+           }
+        } catch (SQLException ex) {
+            System.out.println("Error connection to DB");
+        }
+        
+        try {
+            
+            String sql = "SELECT * FROM Products";
+        
+            ResultSet result = null;
+            Statement stmt = cn.createStatement();
+            result = stmt.executeQuery(sql);
+        
+            while(result.next()) {
+                System.out.println(
+                    result.getInt("ProductID") + " - " +
+                    result.getString("ProductName") + " - " +
+                    result.getString("QuantityPerUnit") + " - " +
+                    result.getDouble("UnitPrice") + " - " +
+                    result.getInt("UnitsInStock")
+                );
+            }
+        } catch (SQLException e) {
+        
+        }
+        
+        }
+   
+    
+}
